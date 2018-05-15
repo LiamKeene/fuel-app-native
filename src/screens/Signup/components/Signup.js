@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import {
   Button,
+  Text,
   View
 } from "react-native"
 
@@ -23,23 +24,40 @@ const FormWrapper = styled.View`
   flex: 0.8;
 `
 
-export default () => (
+export default ({
+  email,
+  password,
+  updateEmail,
+  updatePassword,
+  submit,
+
+  called,
+  loading,
+  error,
+}) => (
   <Wrapper>
-    <View>
+    <View
+      key="form">
       <FormWrapper>
         <FormLabel>
           Email Address
         </FormLabel>
-        <FormInput />
+        <FormInput
+          value={email}
+          onChange={e => updateEmail(e.nativeEvent.text)} />
         <FormLabel>
           Password
         </FormLabel>
-        <FormInput />
+        <FormInput
+          value={password}
+          onChange={e => updatePassword(e.nativeEvent.text)} />
         <Button
           dark
           title="Signup"
-          onPress={() => console.log("Hello email")} />
+          onPress={() => submit({ email, password })} />
       </FormWrapper>
     </View>
+    {loading && <View key="loading"><Text>Loading!</Text></View>}
+    {error && <View key="error"><Text>Error!</Text></View>}
   </Wrapper>
 )
