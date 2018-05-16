@@ -20,9 +20,14 @@ const SignupWithData = props => (
     mutation={SIGNUP_MUTATION}>
     {(signup, props) => (
       <Signup
-        submit={({ email, password }) => (
-          signup({ variables: { email, password } })
-        )}
+        submit={async ({ email, password }) => {
+          const res = await signup({ variables: { email, password } })
+          res.then(response => {
+            console.log("response", response)
+          }).catch(error => {
+            console.log("error", error)
+          })
+        }}
         {...props} />
     )}
   </Mutation>

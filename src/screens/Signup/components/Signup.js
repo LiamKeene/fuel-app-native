@@ -54,10 +54,19 @@ export default ({
         <Button
           dark
           title="Signup"
-          onPress={() => submit({ email, password })} />
+          onPress={async () => await submit({ email, password })} />
       </FormWrapper>
     </View>
     {loading && <View key="loading"><Text>Loading!</Text></View>}
-    {error && <View key="error"><Text>Error!</Text></View>}
+    {error && (
+      <View key="error">
+        {error.graphQLErrors.map(({ message }, i) => (
+          <Text
+            key={i}>
+            {message}
+          </Text>
+        ))}
+      </View>
+    )}
   </Wrapper>
 )
