@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components"
 
 import {
+  Alert,
   Button,
   Text,
   View
@@ -12,6 +13,8 @@ import {
   FormLabel,
   FormInput
 } from "react-native-elements"
+
+import Loading from "../../../components/Loading"
 
 const Wrapper = styled.View`
   align-items: center;
@@ -34,6 +37,7 @@ export default ({
   called,
   loading,
   error,
+  data
 }) => (
   <Wrapper>
     <View
@@ -54,19 +58,17 @@ export default ({
         <Button
           dark
           title="Signup"
-          onPress={async () => await submit({ email, password })} />
+          onPress={async () => await submit({ variables: { email, password } })} />
       </FormWrapper>
     </View>
-    {loading && <View key="loading"><Text>Loading!</Text></View>}
+    <Loading
+      visible={loading}
+      message="Signing you up ..." />
     {error && (
-      <View key="error">
-        {error.graphQLErrors.map(({ message }, i) => (
-          <Text
-            key={i}>
-            {message}
-          </Text>
-        ))}
-      </View>
+      Alert.alert(
+        "There were errors signing up",
+        error.graphQLErrors.map(({ message }, i) => message).join(", ")
+      )
     )}
   </Wrapper>
 )
