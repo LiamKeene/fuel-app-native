@@ -9,6 +9,7 @@ import { withClientState } from "apollo-link-state"
 import { ApolloProvider } from "react-apollo"
 
 import Navigation from "./src/Navigation"
+import { currentCredentialQuery } from "./src/storage"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })
 // const httpLink  = createHttpLink({ uri: "http://192.168.43.249:4000/graphql" })
@@ -43,9 +44,22 @@ Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
   return obj
 }
 
-export default () => (
-  <ApolloProvider
-    client={client}>
-    <Navigation />
-  </ApolloProvider>
-)
+export default () => {
+  // Initial credentials - read from storage?
+  const credentials = {
+    email: "",
+    jwt: "",
+    __typename: "Credential"
+  }
+  client.cache.writeQuery({
+    query: currentCredentialQuery,
+    data: { credentials }
+  })
+
+  return (
+    <ApolloProvider
+      client={client}>
+      <Navigation />
+    </ApolloProvider>
+  )
+}
