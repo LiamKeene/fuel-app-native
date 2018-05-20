@@ -34,6 +34,8 @@ export default ({
   updatePassword,
   submit,
 
+  navigation,
+
   called,
   loading,
   error,
@@ -60,6 +62,13 @@ export default ({
           title="Signup"
           onPress={async () => await submit({ variables: { email, password } })} />
       </FormWrapper>
+      <Text>
+        Already have an account?
+        <Text
+          onPress={() => navigation.navigate("Login")}>
+          Click here
+        </Text>
+      </Text>
     </View>
     <Loading
       visible={loading}

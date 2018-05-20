@@ -33,7 +33,8 @@ export default compose(
   email,
   updateEmail,
   password,
-  updatePassword
+  updatePassword,
+  navigation,
 }) => (
   <Mutation
     mutation={SIGNUP_MUTATION}
@@ -50,6 +51,7 @@ export default compose(
         password={password}
         updatePassword={updatePassword}
         submit={signup}
+        navigation={navigation}
         {...{
           called,
           loading,

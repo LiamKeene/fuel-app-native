@@ -44,22 +44,24 @@ Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
   return obj
 }
 
-export default () => {
-  // Initial credentials - read from storage?
-  const credentials = {
-    email: "",
-    jwt: "",
-    __typename: "Credential"
-  }
-  client.cache.writeQuery({
-    query: currentCredentialQuery,
-    data: { credentials }
-  })
+export default class App extends React.Component {
+  render() {
+    // Initial credentials - read from storage?
+    const credentials = {
+      email: "",
+      jwt: "",
+      __typename: "Credential"
+    }
+    client.cache.writeQuery({
+      query: currentCredentialQuery,
+      data: { credentials }
+    })
 
-  return (
-    <ApolloProvider
-      client={client}>
-      <Navigation />
-    </ApolloProvider>
-  )
+    return (
+      <ApolloProvider
+        client={client}>
+        <Navigation />
+      </ApolloProvider>
+    )
+  }
 }
