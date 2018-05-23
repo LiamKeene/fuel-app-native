@@ -6,9 +6,9 @@ import { ApolloLink } from "apollo-link"
 import { setContext } from "apollo-link-context"
 import { createHttpLink } from "apollo-link-http"
 import { withClientState } from "apollo-link-state"
-import { ApolloProvider } from "react-apollo"
+import { ApolloProvider, Query } from "react-apollo"
 
-import Navigation from "./src/Navigation"
+import { createRootNavigator } from "./src/Navigation"
 import { currentCredentialQuery } from "./src/storage"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })
@@ -60,7 +60,18 @@ export default class App extends React.Component {
     return (
       <ApolloProvider
         client={client}>
-        <Navigation />
+        <Query
+          query={currentCredentialQuery}>
+          {({
+            data,
+            loading,
+            error
+          }) => {
+            const signedIn = data.credentials && !!data.credentials.jwt
+            const Navigation = createRootNavigator({ signedIn })
+            return <Navigation />
+          }}
+        </Query>
       </ApolloProvider>
     )
   }

@@ -50,7 +50,10 @@ export default compose(
         updateEmail={updateEmail}
         password={password}
         updatePassword={updatePassword}
-        submit={login}
+        submit={async (props) => {
+          res = await login(props)
+          navigation.navigate("Home")
+        }}
         navigation={navigation}
         {...{
           called,
