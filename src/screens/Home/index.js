@@ -5,9 +5,24 @@ import {
   View
 } from "react-native"
 
+import { Query } from "react-apollo"
+
+import VEHICLES_QUERY from "../Vehicle/data/vehiclesQuery"
+
+import Vehicles from "./components/Vehicles"
+
 export default () => (
-  <View>
-    <Text>Hi</Text>
-    <Text></Text>
-  </View>
+  <Query
+    query={VEHICLES_QUERY}>
+    {({
+      loading,
+      error,
+      data: {
+        getVehicles = []
+      }
+    }) => (
+      <Vehicles
+        vehicles={getVehicles} />
+    )}
+  </Query>
 )

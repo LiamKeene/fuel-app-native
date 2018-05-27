@@ -10,25 +10,33 @@ import {
   FormInput
 } from "react-native-elements"
 
-export default () => (
+export default ({
+
+}) => (
   <View>
     <FormLabel>
       Registration Number
     </FormLabel>
     <FormInput
-      placeholder="Enter the vehicle registration: ABC-123" />
+      value={rego}
+      placeholder="Enter the vehicle registration: ABC-123"
+      onChange={updateRego} />
     <FormLabel>
       Make
     </FormLabel>
     <FormInput
-      placeholder="Enter the vehicle make: Toyota" />
+      value={make}
+      placeholder="Enter the vehicle make: Toyota"
+      onChange={updateMake} />
     <FormLabel>
       Model
     </FormLabel>
     <FormInput
-      placeholder="Enter the vehicle model: Corolla" />
+      value={model}
+      placeholder="Enter the vehicle model: Corolla"
+      onChange={updateModel} />
     <Button
       title="Save"
-      onPress={() => console.log("Hello there")} />
+      onPress={async () => await submit({ variables: { rego, make, model } })} />
   </View>
 )
