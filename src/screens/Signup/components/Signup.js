@@ -14,8 +14,6 @@ import {
   FormInput
 } from "react-native-elements"
 
-import Loading from "../../../components/Loading"
-
 const Wrapper = styled.View`
   align-items: center;
   flex: 1;
@@ -35,15 +33,9 @@ export default ({
   submit,
 
   navigation,
-
-  called,
-  loading,
-  error,
-  data
 }) => (
   <Wrapper>
-    <View
-      key="form">
+    <View>
       <FormWrapper>
         <FormLabel>
           Email Address
@@ -70,14 +62,5 @@ export default ({
         </Text>
       </Text>
     </View>
-    <Loading
-      visible={loading}
-      message="Signing you up ..." />
-    {error && (
-      Alert.alert(
-        "There were errors signing up",
-        error.graphQLErrors.map(({ message }, i) => message).join(", ")
-      )
-    )}
   </Wrapper>
 )

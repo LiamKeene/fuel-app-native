@@ -2,12 +2,22 @@ import React from "react"
 
 import { Mutation } from "react-apollo"
 
-import { withState, pure, compose } from "recompose"
+import {
+  Alert,
+} from "react-native"
+
+import {
+  compose,
+  pure,
+  withState,
+} from "recompose"
 
 import { currentCredentialQuery } from "../../storage"
 
 import LoginScreen from "./components/Login"
 import LOGIN_MUTATION from "./data/loginMutation"
+
+import Loading from "../../components/Loading"
 
 const updateEmail     = withState("email", "updateEmail", "")
 const updatePassword  = withState("password", "updatePassword", "")
@@ -25,42 +35,48 @@ const updateCache = async (cache, { data: { login } }) => {
   })
 }
 
-export default compose(
-  pure,
+const EnhancedLogin = compose(
   updateEmail,
-  updatePassword
+  updatePassword,
+  pure
 )(({
   email,
   updateEmail,
   password,
   updatePassword,
   navigation,
+
+  login
 }) => (
+  <LoginScreen
+    email={email}
+    updateEmail={updateEmail}
+    password={password}
+    updatePassword={updatePassword}
+    submit={login}
+    navigation={navigation} />
+))
+
+export default ({ navigation }) => (
   <Mutation
     mutation={LOGIN_MUTATION}
     update={updateCache}>
     {(login, {
-      called,
       loading,
       error,
-      data
-    }) => (
-      <LoginScreen
-        email={email}
-        updateEmail={updateEmail}
-        password={password}
-        updatePassword={updatePassword}
-        submit={async (props) => {
-          res = await login(props)
-          navigation.navigate("Home")
-        }}
-        navigation={navigation}
-        {...{
-          called,
-          loading,
-          error,
-          data
-        }} />
-    )}
+    }) => ([
+      <EnhancedLogin
+        login={login}
+        navigation={navigation} />,
+      <Loading
+        visible={loading}
+        message="Logging you in ..." />,
+      (error && (
+        Alert.alert(
+          "There were errors logging in",
+          error.graphQLErrors.map(({ message }) => message).join(", ")
+        )
+      ))
+    ])}
   </Mutation>
-))
+)

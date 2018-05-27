@@ -43,7 +43,7 @@ const TextWrapper = styled.Text`
 
 export default ({
   message,
-  visible,
+  visible = true,
 }) => (
   <Modal
     transparent
