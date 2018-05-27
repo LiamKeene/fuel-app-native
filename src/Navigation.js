@@ -1,12 +1,8 @@
-import React from "react"
-
 import { createStackNavigator, createSwitchNavigator } from "react-navigation"
 
 import Home from "./screens/Home"
 import Login from "./screens/Login"
 import Signup from "./screens/Signup"
-
-import { getCurrentCredentials } from "./storage"
 
 export const SignedOut = ({ everHeldAccount = false }) => (
   createStackNavigator({

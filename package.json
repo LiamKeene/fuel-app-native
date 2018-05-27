@@ -2,12 +2,6 @@
   "name": "fuel-app-native",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "jest-expo": "23.0.0",
-    "react-native-scripts": "1.8.1",
-    "react-test-renderer": "16.0.0",
-    "remote-redux-devtools": "^0.5.12"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -18,6 +12,16 @@
   },
   "jest": {
     "preset": "jest-expo"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-native": "^3.2.1",
+    "jest-expo": "23.0.0",
+    "react-native-scripts": "1.8.1",
+    "react-test-renderer": "16.0.0",
+    "remote-redux-devtools": "^0.5.12"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.1",

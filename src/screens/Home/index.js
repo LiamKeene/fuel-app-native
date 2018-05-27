@@ -5,7 +5,7 @@ import {
   View
 } from "react-native"
 
-export default props => (
+export default () => (
   <View>
     <Text>Hi</Text>
     <Text></Text>
