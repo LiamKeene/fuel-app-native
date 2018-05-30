@@ -8,7 +8,7 @@ import { createHttpLink } from "apollo-link-http"
 import { withClientState } from "apollo-link-state"
 import { ApolloProvider, Query } from "react-apollo"
 
-import { createRootNavigator } from "./src/Navigation"
+import { createRootNavigator } from "./src/components/Navigation"
 import { currentCredentialQuery } from "./src/storage"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })

@@ -11,7 +11,7 @@ import VEHICLES_QUERY from "../Vehicle/data/vehiclesQuery"
 
 import Vehicles from "./components/Vehicles"
 
-export default () => (
+export default ({ navigation }) => (
   <Query
     query={VEHICLES_QUERY}>
     {({
@@ -22,7 +22,8 @@ export default () => (
       }
     }) => (
       <Vehicles
-        vehicles={getVehicles} />
+        vehicles={getVehicles}
+        navigation={navigation} />
     )}
   </Query>
 )

@@ -8,20 +8,33 @@ import {
 } from "recompose"
 
 import {
+  Picker,
   Text,
   View
 } from "react-native"
 
-const ListVehicles = () => (
-  <View>
-    <Text>List of Vehicles</Text>
-  </View>
+import Tile from "../../../components/Tile"
+
+const ListVehicles = ({ vehicles }) => (
+  <Tile>
+    <Text>My Vehicles</Text>
+    <Picker>
+      {vehicles.map(vehicle => (
+        <Picker.Item
+          label={vehicle.rego}
+          value={vehicle.id} />
+      ))}
+    </Picker>
+  </Tile>
 )
 
-const NoVehicles = () => (
-  <View>
-    <Text>No vehicles, sad</Text>
-  </View>
+const NoVehicles = ({ navigation }) => (
+  <Tile>
+    <Text
+      onPress={() => navigation.navigate("Vehicle")}
+      >Click here</Text>
+    <Text>to create one</Text>
+  </Tile>
 )
 
 const displayVehicles = branch(
