@@ -8,6 +8,8 @@ import { createHttpLink } from "apollo-link-http"
 import { withClientState } from "apollo-link-state"
 import { ApolloProvider, Query } from "react-apollo"
 
+import { Provider as PaperProvider } from "react-native-paper"
+
 import { createRootNavigator } from "./src/components/Navigation"
 import { currentCredentialQuery } from "./src/storage"
 
@@ -69,7 +71,11 @@ export default class App extends React.Component {
           }) => {
             const signedIn = data.credentials && !!data.credentials.jwt
             const Navigation = createRootNavigator({ signedIn })
-            return <Navigation />
+            return (
+              <PaperProvider>
+                <Navigation />
+              </PaperProvider>
+            )
           }}
         </Query>
       </ApolloProvider>

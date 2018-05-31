@@ -66,9 +66,11 @@ export default ({ navigation }) => (
       error,
     }) => ([
       <EnhancedSignup
+        key="signup"
         signup={signup}
         navigation={navigation} />,
       <Loading
+        key="loader"
         visible={loading}
         message="Signing you up ..." />,
       (error && (

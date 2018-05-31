@@ -21,6 +21,7 @@ const ListVehicles = ({ vehicles }) => (
     <Picker>
       {vehicles.map(vehicle => (
         <Picker.Item
+          key={vehicle.rego}
           label={vehicle.rego}
           value={vehicle.id} />
       ))}

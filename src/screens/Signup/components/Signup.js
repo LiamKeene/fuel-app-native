@@ -3,15 +3,14 @@ import React from "react"
 import styled from "styled-components"
 
 import {
-  Button,
-  Text,
   View
 } from "react-native"
 
 import {
-  FormLabel,
-  FormInput
-} from "react-native-elements"
+  Button,
+  Text,
+  TextInput
+} from "react-native-paper"
 
 const Wrapper = styled.View`
   align-items: center;
@@ -21,7 +20,7 @@ const Wrapper = styled.View`
 
 const FormWrapper = styled.View`
   justify-content: center;
-  flex: 0.8;
+  width: 250;
 `
 
 export default ({
@@ -36,30 +35,29 @@ export default ({
   <Wrapper>
     <View>
       <FormWrapper>
-        <FormLabel>
-          Email Address
-        </FormLabel>
-        <FormInput
+        <TextInput
+          label="Email Address"
           value={email}
           onChange={e => updateEmail(e.nativeEvent.text)} />
-        <FormLabel>
-          Password
-        </FormLabel>
-        <FormInput
+        <TextInput
+          secureTextEntry
+          label="Password"
           value={password}
           onChange={e => updatePassword(e.nativeEvent.text)} />
         <Button
-          dark
-          title="Signup"
-          onPress={async () => await submit({ variables: { email, password } })} />
+          primary
+          raised
+          onPress={async () => await submit({ variables: { email, password } })}>
+          Signup
+        </Button>
       </FormWrapper>
-      <Text>
-        Already have an account?
-        <Text
-          onPress={() => navigation.navigate("Login")}>
-          Click here
-        </Text>
-      </Text>
     </View>
+    <Text>
+      Already have an account?
+      <Text
+        onPress={() => navigation.navigate("Login")}>
+        Click here
+      </Text>
+    </Text>
   </Wrapper>
 )
