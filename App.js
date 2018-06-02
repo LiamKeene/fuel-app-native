@@ -10,7 +10,7 @@ import { ApolloProvider, Query } from "react-apollo"
 
 import { Provider as PaperProvider } from "react-native-paper"
 
-import { createRootNavigator } from "./src/components/Navigation"
+import { createRootNavigator } from "./src/navigation"
 import { currentCredentialQuery } from "./src/storage"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })

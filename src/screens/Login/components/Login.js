@@ -1,7 +1,5 @@
 import React from "react"
 
-import styled from "styled-components"
-
 import {
   View
 } from "react-native"
@@ -12,16 +10,10 @@ import {
   TextInput
 } from "react-native-paper"
 
-const Wrapper = styled.View`
-  align-items: center;
-  flex: 1;
-  justify-content: center;
-`
-
-const FormWrapper = styled.View`
-  justify-content: center;
-  flex: 0.8;
-`
+import {
+  Wrapper,
+  FormWrapper
+} from "../../../components/Wrappers"
 
 export default ({
   email,
@@ -51,13 +43,10 @@ export default ({
           Login
         </Button>
       </FormWrapper>
-      <Text>
-        Need an account?
-        <Text
-          onPress={() => navigation.navigate("Signup")}>
-          Click here
-        </Text>
-      </Text>
     </View>
+    <Text
+      onPress={() => navigation.navigate("Signup")}>
+      Need an account? Click here
+    </Text>
   </Wrapper>
 )

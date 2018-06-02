@@ -17,12 +17,10 @@ export default ({ navigation }) => (
     {({
       loading,
       error,
-      data: {
-        getVehicles = []
-      }
+      data
     }) => (
       <Vehicles
-        vehicles={getVehicles}
+        vehicles={[]}
         navigation={navigation} />
     )}
   </Query>
