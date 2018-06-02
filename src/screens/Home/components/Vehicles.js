@@ -32,14 +32,14 @@ const ListVehicles = ({ vehicles }) => (
 const NoVehicles = ({ navigation }) => (
   <Tile>
     <Text
-      onPress={() => navigation.navigate("Vehicle")}
-      >Click here</Text>
-    <Text>to create one</Text>
+      onPress={() => navigation.navigate("Vehicle")}>
+      Click here to create one
+    </Text>
   </Tile>
 )
 
 const displayVehicles = branch(
-  ({ vehicles }) => vehicles.length > 0,
+  ({ vehicles }) => vehicles && vehicles.length > 0,
   renderComponent(ListVehicles),
   renderComponent(NoVehicles)
 )

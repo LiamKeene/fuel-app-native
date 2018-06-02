@@ -19,6 +19,7 @@ import SignupScreen from "../../screens/Signup"
 
 import HomeScreen from "../../screens/Home"
 import VehicleScreen from "../../screens/Vehicle"
+import VehiclesScreen from "../../screens/Vehicles"
 
 export { default as DrawerItems } from "./DrawerItems"
 
@@ -32,6 +33,17 @@ export default createStackNavigator({
             icon="menu"
             onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
           <ToolbarContent title="Home" />
+        </Toolbar>
+      ),
+    }),
+  },
+  Vehicles: {
+    screen: VehiclesScreen,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <Toolbar>
+          <ToolbarBackAction onPress={() => navigation.goBack()} />
+          <ToolbarContent title="Vehicles" />
         </Toolbar>
       ),
     }),

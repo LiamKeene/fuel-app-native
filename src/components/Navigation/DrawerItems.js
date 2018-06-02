@@ -26,8 +26,15 @@ const DrawerItems = ({ navigation }) => (
         label="Home"
         icon="home"
         onPress={() => {
-          navigation.navigate("Home")
           navigation.dispatch(DrawerActions.toggleDrawer())
+          navigation.navigate("Home")
+        }} />
+      <DrawerItem
+        label="Vehicles"
+        icon="directions-car"
+        onPress={() => {
+          navigation.dispatch(DrawerActions.toggleDrawer())
+          navigation.navigate("Vehicles")
         }} />
     </DrawerSection>
   </View>

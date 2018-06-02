@@ -5,16 +5,25 @@ import {
   createSwitchNavigator,
 } from "react-navigation"
 
+import {
+  Toolbar,
+  ToolbarContent,
+  ToolbarAction,
+  ToolbarBackAction,
+} from 'react-native-paper'
+
 import RootNavigator, {
   DrawerItems
 } from "./components/Navigation"
 
+import VehiclesScreen from "./screens/Vehicles"
 import LoginScreen from "./screens/Login"
 import SignupScreen from "./screens/Signup"
 
 export const SignedIn = () => (
   createDrawerNavigator({
-    Home: { screen: RootNavigator }
+    Home: { screen: RootNavigator },
+    Vehicles: { screen: VehiclesScreen },
   }, {
     contentComponent: ({ navigation }) => (
       <DrawerItems

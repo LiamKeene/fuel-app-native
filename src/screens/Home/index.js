@@ -7,7 +7,7 @@ import {
 
 import { Query } from "react-apollo"
 
-import VEHICLES_QUERY from "../Vehicle/data/vehiclesQuery"
+import VEHICLES_QUERY from "../Vehicles/data/vehiclesQuery"
 
 import Vehicles from "./components/Vehicles"
 
@@ -17,10 +17,12 @@ export default ({ navigation }) => (
     {({
       loading,
       error,
-      data
+      data: {
+        getVehicles
+      }
     }) => (
       <Vehicles
-        vehicles={[]}
+        vehicles={getVehicles}
         navigation={navigation} />
     )}
   </Query>
