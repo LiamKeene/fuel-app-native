@@ -1,9 +1,13 @@
 import React from "react"
 
 import {
-  Text,
   View
 } from "react-native"
+
+import {
+  Divider,
+  ListItem,
+} from "react-native-paper"
 
 export default ({ vehicles }) => (
   <View>
@@ -11,13 +15,13 @@ export default ({ vehicles }) => (
       rego,
       make,
       model
-    }) => (
-      <View
-        key={rego}>
-        <Text>
-          {rego}
-        </Text>
-      </View>
-    ))}
+    }) => ([
+      <ListItem
+        key={rego}
+        title={rego}
+        description={`${make} ${model}`} />,
+      <Divider
+        key={`divider-${rego}`} />
+    ]))}
   </View>
 )

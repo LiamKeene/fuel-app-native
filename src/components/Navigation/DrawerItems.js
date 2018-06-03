@@ -12,16 +12,29 @@ import { View, StyleSheet, Platform } from "react-native"
 import {
   DrawerItem,
   DrawerSection,
+  Text,
   withTheme,
-  Switch,
-  TouchableRipple,
-  Paragraph,
-  Colors,
 } from "react-native-paper"
 
 const DrawerItems = ({ navigation }) => (
   <View>
-    <DrawerSection title="Subheader">
+    <DrawerSection title="Fuel App">
+      <View
+        style={{
+          height: 90,
+          textAlign: "center",
+        }}>
+        <Text
+          style={{
+            margin: 8,
+            marginTop: 24,
+            padding: 8,
+          }}>
+          Profile Information
+        </Text>
+      </View>
+    </DrawerSection>
+    <DrawerSection>
       <DrawerItem
         label="Home"
         icon="home"
