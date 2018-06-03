@@ -14,14 +14,18 @@ const isIOS = Platform.OS === "ios"
 
 export default ({
   visible,
+  title,
+  message,
   close,
 }) => (
   <Dialog
     onDismiss={close}
     visible={visible}>
-    <DialogTitle>
-      Progress Dialog
-    </DialogTitle>
+    {title && (
+      <DialogTitle>
+        {title}
+      </DialogTitle>
+    )}
     <DialogContent>
       <View
         style={{
@@ -33,7 +37,7 @@ export default ({
           size={isIOS ? "large" : 48}
           style={{ marginRight: 16 }} />
         <Paragraph>
-          Loading.....
+          {message}
         </Paragraph>
       </View>
     </DialogContent>

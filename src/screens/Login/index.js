@@ -1,16 +1,16 @@
 import React from "react"
 
-import { Mutation } from "react-apollo"
-
-import {
-  Alert,
-} from "react-native"
-
 import {
   compose,
   pure,
   withState,
 } from "recompose"
+
+import { Mutation } from "react-apollo"
+
+import {
+  Alert,
+} from "react-native"
 
 import { currentCredentialQuery } from "../../storage"
 

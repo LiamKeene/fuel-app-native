@@ -13,12 +13,24 @@ import {
   View
 } from "react-native"
 
+import {
+  Button
+} from "react-native-paper"
+
 import Tile from "../../../components/Tile"
 
-const ListVehicles = ({ vehicles }) => (
+const ListVehicles = ({
+  vehicles,
+  navigation: {
+    navigate
+  }
+}) => (
   <Tile>
     <Text>My Vehicles</Text>
     <Picker>
+      <Picker.Item
+        key="blank"
+        label="Select a vehicle" />
       {vehicles.map(vehicle => (
         <Picker.Item
           key={vehicle.rego}
@@ -26,6 +38,10 @@ const ListVehicles = ({ vehicles }) => (
           value={vehicle.id} />
       ))}
     </Picker>
+    <Button
+      onPress={() => navigate("Vehicle")}>
+      Add New
+    </Button>
   </Tile>
 )
 

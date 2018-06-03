@@ -18,7 +18,7 @@ import LoginScreen from "../../screens/Login"
 import SignupScreen from "../../screens/Signup"
 
 import HomeScreen from "../../screens/Home"
-import VehicleScreen from "../../screens/Vehicle"
+import VehicleFormScreen from "../../screens/VehicleForm"
 import VehiclesScreen from "../../screens/Vehicles"
 
 export { default as DrawerItems } from "./DrawerItems"
@@ -49,7 +49,7 @@ export default createStackNavigator({
     }),
   },
   Vehicle: {
-    screen: VehicleScreen,
+    screen: VehicleFormScreen,
     navigationOptions: ({ navigation }) => ({
       header: (
         <Toolbar>
