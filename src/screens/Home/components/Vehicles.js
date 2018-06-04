@@ -9,12 +9,12 @@ import {
 
 import {
   Picker,
-  Text,
   View
 } from "react-native"
 
 import {
-  Button
+  Button,
+  Text,
 } from "react-native-paper"
 
 import Tile from "../../../components/Tile"
@@ -31,26 +31,41 @@ const ListVehicles = ({
       <Picker.Item
         key="blank"
         label="Select a vehicle" />
-      {vehicles.map(vehicle => (
+      {vehicles.map(({
+        id,
+        rego,
+        make,
+        model
+      }) => (
         <Picker.Item
-          key={vehicle.rego}
-          label={vehicle.rego}
-          value={vehicle.id} />
+          key={rego}
+          label={rego}
+          value={id} />
       ))}
     </Picker>
-    <Button
-      onPress={() => navigate("Vehicle")}>
-      Add New
-    </Button>
+      <Button
+        style={{
+          flexDirection: "row",
+          alignItems: "flex-end",
+          justifyContent: "flex-end"
+        }}
+        onPress={() => navigate("Vehicle")}>
+        Add New
+      </Button>
   </Tile>
 )
 
 const NoVehicles = ({ navigation }) => (
   <Tile>
-    <Text
+    <Button
+      style={{
+        flexDirection: "row",
+        alignItems: "flex-end",
+        justifyContent: "flex-end"
+      }}
       onPress={() => navigation.navigate("Vehicle")}>
       Click here to create one
-    </Text>
+    </Button>
   </Tile>
 )
 

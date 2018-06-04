@@ -22,7 +22,6 @@ const DrawerItems = ({ navigation }) => (
       <View
         style={{
           height: 90,
-          textAlign: "center",
         }}>
         <Text
           style={{
