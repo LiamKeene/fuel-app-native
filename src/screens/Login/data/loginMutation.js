@@ -7,6 +7,12 @@ export default gql`
       uuid
       email
       jwt
+
+      profile {
+        firstName
+        lastName
+        avatar
+      }
     }
   }
 `

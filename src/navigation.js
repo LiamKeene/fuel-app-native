@@ -20,13 +20,14 @@ import VehiclesScreen from "./screens/Vehicles"
 import LoginScreen from "./screens/Login"
 import SignupScreen from "./screens/Signup"
 
-export const SignedIn = () => (
+export const SignedIn = ({ currentUser }) => (
   createDrawerNavigator({
     Home: { screen: RootNavigator },
     Vehicles: { screen: VehiclesScreen },
   }, {
     contentComponent: ({ navigation }) => (
       <DrawerItems
+        currentUser={currentUser}
         navigation={navigation} />
     ),
   })
@@ -46,17 +47,17 @@ export const SignedOut = ({ everHeldAccount = false }) => (
 )
 
 export const createRootNavigator = ({
-  signedIn = null,
+  currentUser = null,
   everHeldAccount = false
 }) => (
   createSwitchNavigator({
     SignedIn: {
-      screen: SignedIn()
+      screen: SignedIn({ currentUser })
     },
     SignedOut: {
       screen: SignedOut({ everHeldAccount })
     }
   }, {
-    initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+    initialRouteName: (currentUser && !!currentUser.jwt) ? "SignedIn" : "SignedOut"
   })
 )

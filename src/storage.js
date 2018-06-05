@@ -7,6 +7,13 @@ export const currentCredentialQuery = gql`
     credentials {
       email
       jwt
+
+      profile {
+        firstName
+        lastName
+        avatar
+      }
+
       __typename
     }
   }

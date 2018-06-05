@@ -8,7 +8,12 @@ import {
   DrawerActions
 } from "react-navigation"
 
-import { View, StyleSheet, Platform } from "react-native"
+import {
+  View,
+  Image,
+  StyleSheet,
+  Platform
+} from "react-native"
 import {
   DrawerItem,
   DrawerSection,
@@ -16,38 +21,81 @@ import {
   withTheme,
 } from "react-native-paper"
 
-const DrawerItems = ({ navigation }) => (
-  <View>
-    <DrawerSection title="Fuel App">
-      <View
+const DrawerItems = ({
+  currentUser,
+  navigation,
+  theme
+}) => (
+  <View
+    style={{
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "space-between",
+    }}>
+    <View style={{
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "flex-start",
+    }}>
+      <DrawerSection
+        title="Fuel App"
         style={{
-          height: 90,
+          backgroundColor: theme.colors.primary,
+          height: 190,
         }}>
-        <Text
-          style={{
-            margin: 8,
-            marginTop: 24,
-            padding: 8,
-          }}>
-          Profile Information
-        </Text>
-      </View>
-    </DrawerSection>
+        {currentUser.profile && (
+          <View
+            style={{
+              padding: 16
+            }}>
+            <Image
+              style={{
+                height: 50,
+                width: 50,
+                borderRadius: 25,
+              }}
+              source={{
+                uri: currentUser.profile.avatar
+              }} />
+            <View
+              style={{
+                marginTop: 16
+              }}>
+              <Text
+                style={{
+                  marginBottom: 8
+                }}>
+                {currentUser.profile.firstName} {currentUser.profile.lastName}
+              </Text>
+              <Text>
+                {currentUser.email}
+              </Text>
+            </View>
+          </View>
+        )}
+      </DrawerSection>
+      <DrawerSection>
+        <DrawerItem
+          label="Home"
+          icon="home"
+          onPress={() => {
+            navigation.dispatch(DrawerActions.toggleDrawer())
+            navigation.navigate("Home")
+          }} />
+        <DrawerItem
+          label="Vehicles"
+          icon="directions-car"
+          onPress={() => {
+            navigation.dispatch(DrawerActions.toggleDrawer())
+            navigation.navigate("Vehicles")
+          }} />
+      </DrawerSection>
+    </View>
     <DrawerSection>
       <DrawerItem
-        label="Home"
-        icon="home"
-        onPress={() => {
-          navigation.dispatch(DrawerActions.toggleDrawer())
-          navigation.navigate("Home")
-        }} />
-      <DrawerItem
-        label="Vehicles"
-        icon="directions-car"
-        onPress={() => {
-          navigation.dispatch(DrawerActions.toggleDrawer())
-          navigation.navigate("Vehicles")
-        }} />
+        label="Logout"
+        icon="exit-to-app"
+        onPress={() => {}} />
     </DrawerSection>
   </View>
 )

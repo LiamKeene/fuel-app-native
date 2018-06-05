@@ -12,6 +12,7 @@ import { Provider as PaperProvider } from "react-native-paper"
 
 import { createRootNavigator } from "./src/navigation"
 import { currentCredentialQuery } from "./src/storage"
+import theme from "./src/theme"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })
 // const httpLink  = createHttpLink({ uri: "http://192.168.43.249:4000/graphql" })
@@ -54,6 +55,12 @@ export default class App extends React.Component {
     const credentials = {
       email: "",
       jwt: "",
+      profile: {
+        firstName: "",
+        lastName: "",
+        avatar: "",
+        __typename: "Profile"
+      },
       __typename: "Credential"
     }
     client.cache.writeQuery({
@@ -69,10 +76,11 @@ export default class App extends React.Component {
           {({
             data,
           }) => {
-            const signedIn = data.credentials && !!data.credentials.jwt
-            const Navigation = createRootNavigator({ signedIn })
+            const currentUser = data && data.credentials
+            const Navigation = createRootNavigator({ currentUser })
             return (
-              <PaperProvider>
+              <PaperProvider
+                theme={theme}>
                 <Navigation />
               </PaperProvider>
             )
