@@ -18,6 +18,7 @@ import LoginScreen from "../../screens/Login"
 import SignupScreen from "../../screens/Signup"
 
 import HomeScreen from "../../screens/Home"
+import ProfileScreen from "../../screens/Profile"
 import VehicleFormScreen from "../../screens/VehicleForm"
 import VehiclesScreen from "../../screens/Vehicles"
 
@@ -33,6 +34,17 @@ export default createStackNavigator({
             icon="menu"
             onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())} />
           <ToolbarContent title="Home" />
+        </Toolbar>
+      ),
+    }),
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: ({ navigation }) => ({
+      header: (
+        <Toolbar>
+          <ToolbarBackAction onPress={() => navigation.goBack()} />
+          <ToolbarContent title="Profile" />
         </Toolbar>
       ),
     }),

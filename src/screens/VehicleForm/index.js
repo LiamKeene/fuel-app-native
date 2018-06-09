@@ -12,13 +12,13 @@ import {
   Alert,
 } from "react-native"
 
+import Loading from "../../components/Loading"
+
 import createReducer from "../../utils/createReducer"
 
 import VehicleFormScreen from "./components/VehicleForm"
 import CREATE_VEHICLE_MUTATION from "./data/createVehicleMutation"
 import VEHICLES_QUERY from "../Vehicles/data/vehiclesQuery"
-
-import Loading from "../../components/Loading"
 
 const formReducer = createReducer({})({
   ["UPDATE_INPUT"]: (state, action) => ({ ...state, [action.name]: action.value })

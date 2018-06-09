@@ -90,6 +90,15 @@ const DrawerItems = ({
             navigation.navigate("Vehicles")
           }} />
       </DrawerSection>
+      <DrawerSection>
+        <DrawerItem
+          label="Profile"
+          icon="account-circle"
+          onPress={() => {
+            navigation.dispatch(DrawerActions.toggleDrawer())
+            navigation.navigate("Profile")
+          }} />
+      </DrawerSection>
     </View>
     <DrawerSection>
       <DrawerItem
