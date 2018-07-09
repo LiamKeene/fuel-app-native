@@ -21,13 +21,17 @@ import Tile from "../../../components/Tile"
 
 const ListVehicles = ({
   vehicles,
+  selectedVehicle,
+  onChange,
   navigation: {
     navigate
   }
 }) => (
   <Tile>
     <Text>My Vehicles</Text>
-    <Picker>
+    <Picker
+      selectedValue={selectedVehicle}
+      onValueChange={value => onChange(value)}>
       <Picker.Item
         key="blank"
         label="Select a vehicle" />
