@@ -1,38 +1,13 @@
 import React from "react"
 
-import {
-  branch,
-  compose,
-  pure,
-  renderComponent,
-  withReducer,
-} from "recompose"
-
 import { Query } from "react-apollo"
 
-import {
-  Text,
-  View
-} from "react-native"
+import { Text, View } from "react-native"
 
 import Tile from "../../components/Tile"
 
-import VehiclesList from "./components/VehicleList"
-import NoVehicles from "./components/NoVehicles"
+import Vehicles from "./components"
 import VEHICLES_QUERY from "./data/vehiclesQuery"
-
-const displayVehicles = branch(
-  ({ vehicles }) => vehicles && vehicles.length > 0,
-  renderComponent(VehiclesList),
-  renderComponent(NoVehicles)
-)
-
-const Vehicles = compose(
-  displayVehicles,
-  pure
-)(() => (
-  <View />
-))
 
 export default ({ navigation }) => (
   <Query

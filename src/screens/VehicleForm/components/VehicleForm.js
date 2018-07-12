@@ -1,30 +1,16 @@
 import React from "react"
+import { compose, pure } from "recompose"
 
-import {
-  View
-} from "react-native"
+import { View } from "react-native"
+import { Button, TextInput } from "react-native-paper"
 
-import {
-  Button,
-  TextInput
-} from "react-native-paper"
+import { Wrapper, FormWrapper } from "../../../components/Wrappers"
+import Tile from "../../../components/Tile"
+import { formReducer } from "../../../components/FormHOCs"
 
-import {
-  Wrapper,
-  FormWrapper
-} from "../../../components/Wrappers"
-
-export default ({
-  form: {
-    rego,
-    make,
-    model
-  },
-  dispatch,
-  submit
-}) => (
-  <Wrapper>
-    <View>
+export const VehicleForm = ({ form: { rego, make, model }, dispatch, submit }) => (
+  <View>
+    <Tile>
       <FormWrapper>
         <TextInput
           label="Registration Number"
@@ -48,6 +34,16 @@ export default ({
           Save
         </Button>
       </FormWrapper>
-    </View>
-  </Wrapper>
+    </Tile>
+  </View>
 )
+
+export default compose(
+  formReducer({ rego: "", make: "", model: "" }),
+  pure,
+)(({ dispatch, form, submit }) => (
+  <VehicleForm
+    dispatch={dispatch}
+    form={form}
+    submit={submit} />
+))

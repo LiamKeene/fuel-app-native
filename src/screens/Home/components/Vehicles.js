@@ -53,7 +53,7 @@ const ListVehicles = ({
           alignItems: "flex-end",
           justifyContent: "flex-end"
         }}
-        onPress={() => navigate("Vehicle")}>
+        onPress={() => navigate("VehicleForm")}>
         Add New
       </Button>
   </Tile>
@@ -67,7 +67,7 @@ const NoVehicles = ({ navigation }) => (
         alignItems: "flex-end",
         justifyContent: "flex-end"
       }}
-      onPress={() => navigation.navigate("Vehicle")}>
+      onPress={() => navigation.navigate("VehicleForm")}>
       Click here to create one
     </Button>
   </Tile>
@@ -79,13 +79,7 @@ const displayVehicles = branch(
   renderComponent(NoVehicles)
 )
 
-const Vehicles = () => (
-  <View>
-    <Text>wew lad</Text>
-  </View>
-)
-
 export default compose(
   displayVehicles,
   pure
-)(Vehicles)
+)(<div />)

@@ -1,31 +1,13 @@
 import React from "react"
 
-import {
-  compose,
-  pure,
-  withReducer,
-} from "recompose"
-
 import { Mutation } from "react-apollo"
 
-import {
-  Alert,
-} from "react-native"
+import { Alert } from "react-native"
 
 import Loading from "../../components/Loading"
 
-import { inputReducer } from "../../utils/formReducers"
-
 import ProfileScreen from "./components/Profile"
 import UPDATE_PROFILE_MUTATION from "./data/updateProfileMutation"
-
-const INITIAL_STATE = {
-  firstName:  "",
-  lastName:   "",
-  avatar:     ""
-}
-const formReducer = inputReducer(INITIAL_STATE, "UPDATE_INPUT")
-const updateForm  = withReducer("form", "dispatch", formReducer, INITIAL_STATE)
 
 const updateCache = async (cache, {
   data: { updateProfile },
@@ -33,22 +15,6 @@ const updateCache = async (cache, {
 }) => {
   navigate("Home")
 }
-
-const EnhancedProfile = compose(
-  updateForm,
-  pure
-)(({
-  dispatch,
-  form,
-  updateProfile,
-  currentUser,
-}) => (
-  <ProfileScreen
-    currentUser={currentUser}
-    form={form}
-    dispatch={dispatch}
-    submit={updateProfile} />
-))
 
 export default ({ currentUser, navigation }) => (
   <Mutation
@@ -58,9 +24,9 @@ export default ({ currentUser, navigation }) => (
       loading,
       error
     }) => ([
-      <EnhancedProfile
+      <ProfileScreen
         key="update-profile"
-        updateProfile={updateProfile}
+        submit={updateProfile}
         navigation={navigation}
         currentUser={currentUser} />,
       <Loading

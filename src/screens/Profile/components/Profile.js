@@ -1,28 +1,13 @@
 import React from "react"
+import { compose, pure } from "recompose"
 
-import {
-  View
-} from "react-native"
+import { View } from "react-native"
+import { Button, TextInput } from "react-native-paper"
 
-import {
-  Button,
-  TextInput
-} from "react-native-paper"
+import { Wrapper, FormWrapper } from "../../../components/Wrappers"
+import { formReducer } from "../../../components/FormHOCs"
 
-import {
-  Wrapper,
-  FormWrapper
-} from "../../../components/Wrappers"
-
-export default ({
-  form: {
-    firstName,
-    lastName,
-    avatar
-  },
-  dispatch,
-  submit
-}) => (
+export const ProfileForm = ({ form: { firstName, lastName, avatar }, dispatch, submit }) => (
   <Wrapper>
     <View>
       <FormWrapper>
@@ -48,3 +33,13 @@ export default ({
     </View>
   </Wrapper>
 )
+
+export default compose(
+  formReducer({ firstName: "", lastName: "", avatar: "" }),
+  pure
+)(({ dispatch, form, submit }) => (
+  <ProfileForm
+    dispatch={dispatch}
+    form={form}
+    submit={submit} />
+))

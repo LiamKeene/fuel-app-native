@@ -1,11 +1,5 @@
 import React from "react"
 
-import {
-  compose,
-  pure,
-  withReducer,
-} from "recompose"
-
 import { Mutation } from "react-apollo"
 
 import {
@@ -14,17 +8,9 @@ import {
 
 import Loading from "../../components/Loading"
 
-import createReducer from "../../utils/createReducer"
-
 import VehicleFormScreen from "./components/VehicleForm"
 import CREATE_VEHICLE_MUTATION from "./data/createVehicleMutation"
 import VEHICLES_QUERY from "../Vehicles/data/vehiclesQuery"
-
-const formReducer = createReducer({})({
-  ["UPDATE_INPUT"]: (state, action) => ({ ...state, [action.name]: action.value })
-})
-
-const updateForm = withReducer("form", "dispatch", formReducer, { rego: "", make: "", model: "" })
 
 const updateCache = async (cache, {
   data: { createVehicle },
@@ -42,20 +28,6 @@ const updateCache = async (cache, {
   navigate("Home")
 }
 
-const EnhancedVehicle = compose(
-  updateForm,
-  pure
-)(({
-  dispatch,
-  form,
-  createVehicle
-}) => (
-  <VehicleFormScreen
-    form={form}
-    dispatch={dispatch}
-    submit={createVehicle} />
-))
-
 export default ({ navigation }) => (
   <Mutation
     mutation={CREATE_VEHICLE_MUTATION}
@@ -64,9 +36,9 @@ export default ({ navigation }) => (
       loading,
       error
     }) => ([
-      <EnhancedVehicle
+      <VehicleFormScreen
         key="create-vehicle"
-        createVehicle={createVehicle}
+        submit={createVehicle}
         navigation={navigation} />,
       <Loading
         key="loader"

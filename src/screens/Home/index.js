@@ -64,7 +64,7 @@ const FilteredVehicles = branch(
   ({ vehicleId }) => vehicleId !== undefined,
   renderComponent(VehiclePurchases),
   renderComponent(AllPurchases)
-)(<div>Woo hoo</div>)
+)(<div />)
 
 const updatePicker = withStateHandlers(
   () => ({ vehicleId: undefined }),

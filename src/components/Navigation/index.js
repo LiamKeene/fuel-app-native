@@ -60,7 +60,7 @@ export default createStackNavigator({
       ),
     }),
   },
-  Vehicle: {
+  VehicleForm: {
     screen: VehicleFormScreen,
     navigationOptions: ({ navigation }) => ({
       header: (

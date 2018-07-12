@@ -9,9 +9,10 @@ import {
   ListItem,
 } from "react-native-paper"
 
-export default ({ vehicles }) => (
+export default ({ navigation, vehicles }) => (
   <View>
     {vehicles.map(({
+      id,
       rego,
       make,
       model
@@ -19,7 +20,10 @@ export default ({ vehicles }) => (
       <ListItem
         key={rego}
         title={rego}
-        description={`${make} ${model}`} />,
+        description={`${make} ${model}`}
+        onPress={() => navigation.navigate("VehicleForm", {
+          id
+        })} />,
       <Divider
         key={`divider-${rego}`} />
     ]))}
