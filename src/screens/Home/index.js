@@ -32,15 +32,11 @@ const VehiclePurchases = ({ vehicleId, navigation }) => (
     key="fuel-purchases"
     query={VEHICLE_PURCHASES_QUERY}
     variables={{ vehicleId }}>
-    {({
-      loading,
-      error,
-      data
-    }) => (
+    {({ loading, error, data }) => (
       <FuelPurchases
         purchases={data && data.getPurchases || []}
         navigation={navigation} />
-      )}
+    )}
   </Query>
 )
 
