@@ -34,6 +34,7 @@
     "react-apollo": "^2.1.2",
     "react-native": "0.50.3",
     "react-native-paper": "^1.9.1",
+    "react-native-sensitive-info": "mCodex/react-native-sensitive-info#keystore",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.0.1",
     "react-redux": "^5.0.6",

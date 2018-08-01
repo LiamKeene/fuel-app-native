@@ -21,11 +21,7 @@ import {
   withTheme,
 } from "react-native-paper"
 
-const DrawerItems = ({
-  currentUser,
-  navigation,
-  theme
-}) => (
+const DrawerItems = ({ currentUser, navigation, theme, onLogout }) => (
   <View
     style={{
       flex: 1,
@@ -104,7 +100,11 @@ const DrawerItems = ({
       <DrawerItem
         label="Logout"
         icon="exit-to-app"
-        onPress={() => {}} />
+        onPress={() => {
+          navigation.dispatch(DrawerActions.toggleDrawer())
+          onLogout()
+          navigation.navigate("SignedOut")
+        }} />
     </DrawerSection>
   </View>
 )

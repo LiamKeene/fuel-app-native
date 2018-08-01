@@ -10,8 +10,10 @@ import { ApolloProvider, Query } from "react-apollo"
 
 import { Provider as PaperProvider } from "react-native-paper"
 
+import LoadingScreen from "./src/screens/LoadingScreen"
 import { createRootNavigator } from "./src/navigation"
-import { currentCredentialQuery } from "./src/storage"
+import { loadCredentials } from "./src/applicationStorage"
+import { currentCredentialQuery } from "./src/getCurrentCredentials"
 import theme from "./src/theme"
 
 // const httpLink  = createHttpLink({ uri: "http://192.168.1.84:4000/graphql" })
@@ -35,14 +37,9 @@ const stateLink = withClientState({
   resolvers: {},
 })
 
-const link = ApolloLink.from([stateLink, authLink, httpLink])
-
-const cache = new InMemoryCache()
-
-const client = new ApolloClient({
-  link,
-  cache
-})
+const link    = ApolloLink.from([stateLink, authLink, httpLink])
+const cache   = new InMemoryCache()
+const client  = new ApolloClient({ link, cache })
 
 Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
   obj.__proto__ = proto
@@ -50,34 +47,32 @@ Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
 }
 
 export default class App extends React.Component {
-  render() {
-    // Initial credentials - read from storage?
-    const credentials = {
-      email: "",
-      jwt: "",
-      profile: {
-        firstName: "",
-        lastName: "",
-        avatar: "",
-        __typename: "Profile"
-      },
-      __typename: "Credential"
-    }
+  state = { isLoading: true }
+
+  async componentDidMount() {
+    const credentials = await loadCredentials()
+
     client.cache.writeQuery({
       query: currentCredentialQuery,
       data: { credentials }
     })
+    this.setState({ isLoading: false })
+  }
+
+  render() {
+    if (this.state.isLoading) {
+      return <LoadingScreen />
+    }
 
     return (
       <ApolloProvider
         client={client}>
         <Query
           query={currentCredentialQuery}>
-          {({
-            data,
-          }) => {
+          {({ data }) => {
             const currentUser = data && data.credentials
             const Navigation = createRootNavigator({ currentUser })
+
             return (
               <PaperProvider
                 theme={theme}>

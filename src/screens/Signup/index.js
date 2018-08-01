@@ -4,7 +4,7 @@ import { Mutation } from "react-apollo"
 
 import { Alert } from "react-native"
 
-import { currentCredentialQuery } from "../../storage"
+import { currentCredentialQuery } from "../../getCurrentCredentials"
 
 import SignupScreen from "./components/Signup"
 import SIGNUP_MUTATION from "./data/signupMutation"

@@ -20,6 +20,8 @@ import VehiclesScreen from "./screens/Vehicles"
 import LoginScreen from "./screens/Login"
 import SignupScreen from "./screens/Signup"
 
+import { removeCredentials } from "./applicationStorage"
+
 export const SignedIn = ({ currentUser }) => (
   createDrawerNavigator({
     Home: { screen: RootNavigator },
@@ -28,7 +30,8 @@ export const SignedIn = ({ currentUser }) => (
     contentComponent: ({ navigation }) => (
       <DrawerItems
         currentUser={currentUser}
-        navigation={navigation} />
+        navigation={navigation}
+        onLogout={removeCredentials} />
     ),
   })
 )
@@ -46,10 +49,7 @@ export const SignedOut = ({ everHeldAccount = false }) => (
   })
 )
 
-export const createRootNavigator = ({
-  currentUser = null,
-  everHeldAccount = false
-}) => (
+export const createRootNavigator = ({ currentUser = null, everHeldAccount = false }) => (
   createSwitchNavigator({
     SignedIn: {
       screen: SignedIn({ currentUser })

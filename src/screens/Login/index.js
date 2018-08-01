@@ -4,7 +4,8 @@ import { Mutation } from "react-apollo"
 
 import { Alert } from "react-native"
 
-import { currentCredentialQuery } from "../../storage"
+import { saveCredentials } from "../../applicationStorage"
+import { currentCredentialQuery } from "../../getCurrentCredentials"
 
 import LoginScreen from "./components/Login"
 import LOGIN_MUTATION from "./data/loginMutation"
@@ -12,12 +13,7 @@ import LOGIN_MUTATION from "./data/loginMutation"
 import Loading from "../../components/Loading"
 
 const updateCache = async (cache, { data: { login } }) => {
-  const credentials = {
-    email: login.email,
-    jwt: login.jwt,
-    profile: login.profile,
-    __typename: "Credential"
-  }
+  const credentials = saveCredentials(login)
   cache.writeQuery({
     query: currentCredentialQuery,
     data: { credentials }
